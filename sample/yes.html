@@ -11,58 +11,76 @@
     <title></title>
     <style type="text/css">
         body {
-            font-size: 18px;
-            font-family: 'Arial';
+            font-size: 15px;
+            font-family: 'Trebuchet MS', sans-serif;
             background: #e7e7e7;
         }
 
         #print-table {
-            margin: 0 auto;
-            width: 800px;
+            margin: auto;
+            width: 95%; /* Adjust width for smaller screens */
+            max-width: 550px; /* Maximum width on larger screens */
             background: #fff;
             padding: 20px;
         }
 
+         @media (min-width: 426px) {
+            #print-table{
+                width: 550px;
+            }
+          }
+        
+
         table {
-            margin: 0 auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 100%; /* Ensure table fits within its container */
         }
 
         table th {
             font-weight: bold;
             text-align: left;
-            width: 25%;
+           width: 35%; /* Adjust th width for better mobile view */
+           white-space: nowrap;
         }
 
         table td {
-            /*text-align: center;*/
-            width: 75%;
+            width: 65%; /* Adjust td width for better mobile view */
+            word-break: break-word; /* Break long words */
+           white-space: nowrap;
         }
 
-        table th,
-        table td {
-            /*padding: 5px;*/
-            /*border: 1px solid #ccc;*/
-        }
 
         .user-img {
-            width: 50px;
-            /*		height: 50px;*/
-            /*		border-radius: 50%;*/
+            width: 60px; /* Adjust user image size for mobile */
+            
         }
+      
+         .card {
+            width: 100% !important;
+            margin: 0 auto;
+            max-width: 450px; /* Limit card width on larger screens */
+         }
     </style>
 </head>
 
 <body>
 
-    <div id="print-table">
-        <div class="card" style="width:600px !important; margin:0 auto;" id="print-pdf">
+    <div id="print-table" style="padding-bottom: 60px; padding-top: 60px;">
+        <div class="card"  id="print-pdf">
             <div class="logo text-center">
                 <!-- <img src="https://gsports.gitam.edu/assets/images/GITAM_logo.png" class="gitam-logo-1" height="50"> -->
-                <img src="https://cdn.gitam.edu/images/logo/gitam-new-logo.png" class="gitam-logo-1" height="50">
+                <img  src="https://cdn.gitam.edu/images/logo/gitam-new-logo.png" class="gitam-logo-1" width="120px">
                 <h3>Reservation information</h3>
             </div>
             <table class="m17 jb jb1 table table-bordered" style="width:100% !important">
                 <tbody>
+                    <tr>
+                        <th>Ref. number</th>
+                        <td>
+                            20250107690953
+                        </td>
+                    </tr>
                     <tr>
                         <th>Stadium</th>
                         <td>
@@ -82,41 +100,41 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Applicant name</th>
+                        <th>Name</th>
                         <td>
-                            <img src='https://doeresults.gitam.edu/photo/img.aspx?id=VU22CSEN0101446' class='user-img'/> KALAVA BALA YASASWI						</td>
+                            <img src='https://doeresults.gitam.edu/photo/img.aspx?id=VU22CSEN0101442' class='user-img'/> KILARI YESWANTH						</td>
                     </tr>
                     <tr>
-                        <th>Applicant department</th>
+                        <th>Department</th>
                         <td>
                             CSE
                         </td>
                     </tr>
                     <tr>
-                        <th>Applicant campus</th>
+                        <th>Campus</th>
                         <td>
                             GIT, Visakhapatnam
                         </td>
                     </tr>
                     <tr>
-						<th>Applicant mobile</th>
+						<th>Mobile</th>
 						<td>
-							9154953799						</td>
+							8555941817						</td>
 					</tr>
 					<tr>
-						<th>Applicant e-mail</th>
+						<th>E-mail</th>
 						<td>
-							bkavala@gitam.in						</td>
+							ykilari@gitam.in						</td>
 					</tr>
                         <th>Booking date</th>
-                        <td id="bookingDate">
+                        <td id="bookingDate" style="font-weight: bold;">
                             
                         </td>
                     </tr>
                     <tr>
                         <th>Booking slot</th>
-                        <td>
-                            05:00 PM to 06:00 PM
+                        <td id="bookingSlot">
+                           
                         </td>
                     </tr>
 
@@ -126,12 +144,7 @@
                             FREE
                         </td>
                     </tr>
-                    <tr>
-                        <th>Reference number</th>
-                        <td>
-                            20241029125623
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <th>Status</th>
                         <td>
@@ -148,8 +161,7 @@
             </table>
         </div>
 
-        <div style="text-align: center;" id="print-btn"><button class="btn btn-primary" onClick='printpage();'
-                type="button">Download</button></div>
+       
     </div>
     <br>
 
@@ -197,6 +209,32 @@
     
       bookingDateCell.textContent = formattedDate;
 
+       // Calculate the booking slot based on the current time
+        const now = new Date();
+        let currentHour = now.getHours();
+        let startHour = Math.floor(currentHour);
+        let endHour = startHour + 1;
+        let ampmStart = startHour >= 12 ? 'PM' : 'AM';
+        let ampmEnd = endHour >= 12 ? 'PM' : 'AM';
+
+         if (startHour > 12) {
+            startHour -= 12;
+          } else if(startHour === 0){
+            startHour = 12;
+         }
+          if (endHour > 12) {
+            endHour -= 12;
+          }else if(endHour === 0){
+            endHour = 12;
+         }
+
+         const bookingSlotCell = document.getElementById('bookingSlot');
+
+           const formattedStartHour = String(startHour).padStart(2, '0');
+         const formattedEndHour = String(endHour).padStart(2,'0');
+
+
+        bookingSlotCell.innerHTML = `<span style="color: red;"><b> ${formattedStartHour}:00 ${ampmStart} to ${formattedEndHour}:00 ${ampmEnd}</b></span>`;
     });
   </script>
 
