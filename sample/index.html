@@ -39,7 +39,6 @@
 
     header nav {
       display: flex;
-      
       gap: 10px;
       flex-wrap: wrap;
       margin-right: 10px;
@@ -68,8 +67,8 @@
 
     h2 {
       text-align: center;
-      color: #00796b;
-      font-size: 1.1em;
+      color: black;
+      font-size: 2em;
     }
 
     /* Table Styles */
@@ -181,23 +180,24 @@
     }
 
     /* Responsive Design */
-      @media (max-width: 768px) {
+    @media (max-width: 768px) {
       header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Center items vertically */
         padding: 5px 10px;
+         text-align: center; /* center content */
       }
-          header h1{
-            margin-left: 0px;
-            margin-bottom: 5px;
-         }
-        header nav {
-           justify-content: flex-start;
-           margin-right: 0;
+
+      header h1 {
+          margin-left: 0;
+          margin-bottom: 5px;
+        justify-content: center;
+      }
+         header nav{
+            justify-content: center;
+          margin-right: 0;
         }
-       header nav a {
-          font-size: 0.8em;
-      }
+
       .container {
         padding: 15px;
       }
@@ -205,7 +205,7 @@
       h2 {
         font-size: 1em;
       }
-        /* Move search and show entries above the table */
+         /* Move search and show entries above the table */
         .search-container {
         flex-direction: column;
         align-items: flex-start;
@@ -229,39 +229,50 @@
              align-items: center;
               margin-bottom: 10px;
         }
-        }
-
-    @media (max-width: 480px) {
-         header h1{
-            font-size: 1em;
-        }
-       table th, table td {
-        font-size: 0.7em;
-          padding: 5px;
-       }
-
-       .pagination a {
-        font-size: 0.7em;
-        padding: 3px 6px;
-      }
-           .search-container label select {
-            max-width: 100px; /* Set a max width */
-        }
-     .search-container input[type="search"] {
-          max-width: 150px;
-       }
     }
 
+
+   @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  header h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  header h1 img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  header nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+  }
+}
+
+
     @media (max-width: 320px) {
-      header h1 img {
-        width: 100px;
-        }
+    header h1 img {
+      width: 100px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-       <h1 style="margin-left: 100px;"><img width="140px" src="image.png" alt=""></h1>
+     <h1 style="margin-left: 10px;"><img width="140px" src="image.png" alt=""></h1>
     <nav>
       <a href="#">Home</a>
       <a href="#">History</a>
@@ -269,8 +280,8 @@
     </nav>
   </header>
   <div class="container">
-    <h2>Reservation History</h2>
-     <div class="search-container">
+    <h2 >Reservation History</h2>
+      <div class="search-container">
         <label>
             Show
             <select>
@@ -300,7 +311,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="reservationTableBody">
+         <tbody id="reservationTableBody">
           <!-- Table rows will be added here dynamically -->
            <tr>
             <td>20241220660164</td>
@@ -308,7 +319,7 @@
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
             <td id="todayDate"></td>
-            <td id="currentTimeSlot"></td>
+             <td id="currentTimeSlot"></td>
             <td>Approved</td>
             <td>Approved</td>
             <td><a href="yes.html"><center><img src="eye.png" width="17px" alt=""></center></a></td>
@@ -318,7 +329,7 @@
             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>21-Dec-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -326,10 +337,10 @@
         </tr>
         <tr>
             <td>20241220660163</td>
-            <td>Fitness & Performance Centre</td>
+             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>18-Dec-2024</td>
+           <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -340,7 +351,7 @@
             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>15-Dec-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -351,7 +362,7 @@
             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>12-Dec-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -359,10 +370,10 @@
         </tr>
         <tr>
             <td>20241220660160</td>
-            <td>Fitness & Performance Centre</td>
+           <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>09-Dec-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -370,10 +381,10 @@
         </tr>
         <tr>
             <td>20241220660159</td>
-            <td>Fitness & Performance Centre</td>
+             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>06-Dec-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -381,10 +392,10 @@
         </tr>
         <tr>
             <td>20241220660158</td>
+             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
-            <td>Fitness & Performance Centre</td>
-            <td>room 1</td>
-            <td>03-Dec-2024</td>
+             <td>room 1</td>
+             <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -392,21 +403,21 @@
         </tr>
         <tr>
             <td>20241220660157</td>
-            <td>Fitness & Performance Centre</td>
+           <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>30-Nov-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
-            <td>Approved</td>
+             <td>Approved</td>
             <td><a href="yes.html"><center><img src="eye.png" width="17px" alt=""></center></a></td>
         </tr>
         <tr>
             <td>20241220660156</td>
-            <td>Fitness & Performance Centre</td>
+             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
-            <td>27-Nov-2024</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
@@ -414,16 +425,15 @@
         </tr>
         <tr>
             <td>20241220660155</td>
+             <td>Fitness & Performance Centre</td>
             <td>Fitness & Performance Centre</td>
-            <td>Fitness & Performance Centre</td>
-            <td>room 1</td>
-            <td>24-Nov-2024</td>
+             <td>room 1</td>
+            <td class="dynamic-date"></td>
             <td>06:00 AM to 07:00 AM</td>
             <td>Approved</td>
             <td>Approved</td>
             <td><a href="yes.html"><center><img src="eye.png" width="17px" alt=""></center></a></td>
         </tr>
-         
         </tbody>
       </table>
     </div>
