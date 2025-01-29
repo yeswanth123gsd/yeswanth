@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reservation History</title>
   <link rel="shortcut icon" href="" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f9f9f9;
+      font-size: 0.9rem;
     }
 
     header {
@@ -20,26 +22,34 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
+      padding: 5px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.2em;
+      font-size: 1.1em;
+      margin-left: 10px;
+         display: flex;
+       align-items: center;
     }
+     header h1 img {
+          margin-right: 5px;
+      }
 
     header nav {
       display: flex;
+      
       gap: 10px;
       flex-wrap: wrap;
-      margin-right: 50px;
+      margin-right: 10px;
     }
 
     header nav a {
       color: #00796b;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
-      font-size: 0.9em;
+      font-size: 0.85em;
     }
 
     header nav a:hover {
@@ -53,13 +63,13 @@
       background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
       text-align: center;
       color: #00796b;
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
 
     /* Table Styles */
@@ -70,7 +80,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     table thead {
@@ -81,12 +91,24 @@
     table th, table td {
       text-align: left;
       border: 1px solid #ddd;
-      padding: 10px;
+      padding: 8px;
+      font-size: 0.8em;
+       vertical-align: top;
     }
 
     table th {
       position: sticky;
       top: 0;
+    }
+    table th:nth-child(5), /* Reserved Date header */
+    table td:nth-child(5) { /* Reserved Date data */
+        width: 120px; /* adjust width */
+        text-align: center;
+    }
+    table th:nth-child(6), /* Time Slot header */
+    table td:nth-child(6) {  /*Time Slot Data */
+        width: 140px; /* Adjust width */
+         text-align: center;
     }
 
     table tbody tr:nth-child(even) {
@@ -99,13 +121,15 @@
       display: flex;
       justify-content: center;
       gap: 5px;
+      flex-wrap: wrap;
     }
 
     .pagination a {
-      padding: 5px 10px;
+      padding: 5px 8px;
       border: 1px solid #ddd;
       text-decoration: none;
       color: #00796b;
+      font-size: 0.8em;
     }
 
     .pagination a.active {
@@ -120,65 +144,124 @@
 
     /* Search bar */
     .search-container {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
     }
 
-    .search-container input[type="search"] {
+      .search-container label{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+        font-size: 0.85em;
+    }
+
+
+    .search-container label select {
       padding: 5px;
-      width: 100%;
-      max-width: 200px;
       border: 1px solid #ccc;
       border-radius: 5px;
+       font-size: 0.85em;
+           max-width: 120px; /* Set a max width */
+    }
+       .search-container label.search-label {
+          width: auto;
+          margin-bottom: 0px;
+        }
+     .search-container input[type="search"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.85em;
+         max-width: 180px;
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+      @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 5px 10px;
       }
-
-      header nav {
-        justify-content: flex-start;
+          header h1{
+            margin-left: 0px;
+            margin-bottom: 5px;
+         }
+        header nav {
+           justify-content: flex-start;
+           margin-right: 0;
+        }
+       header nav a {
+          font-size: 0.8em;
       }
-
       .container {
         padding: 15px;
-      }
-
-      table th, table td {
-        font-size: 0.8em;
-        padding: 5px;
       }
 
       h2 {
         font-size: 1em;
       }
-
-      .pagination a {
-        padding: 5px;
-        font-size: 0.8em;
-      }
-
-      .search-container {
+        /* Move search and show entries above the table */
+        .search-container {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .search-container label, .search-container input[type="search"] {
         margin-bottom: 10px;
-        width: 100%;
       }
+        .search-container label{
+             width: auto;
+             justify-content: flex-start;
+         }
+       .search-container label select,
+            .search-container input[type="search"] {
+                margin-bottom: 0px;
+              width: auto;
+            }
+            .search-container input[type="search"] {
+                   margin-left: 5px;
+           }
+
+         .search-container .search-input-container{
+          display: flex;
+             align-items: center;
+              margin-bottom: 10px;
+        }
+        }
+
+    @media (max-width: 480px) {
+         header h1{
+            font-size: 1em;
+        }
+       table th, table td {
+        font-size: 0.7em;
+          padding: 5px;
+       }
+
+       .pagination a {
+        font-size: 0.7em;
+        padding: 3px 6px;
+      }
+           .search-container label select {
+            max-width: 100px; /* Set a max width */
+        }
+     .search-container input[type="search"] {
+          max-width: 150px;
+       }
+    }
+
+    @media (max-width: 320px) {
+      header h1 img {
+        width: 100px;
+        }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1 style="margin-left:100px;"><img width="140px" src="image.png" alt=""></h1>
+       <h1 style="margin-left: 100px;"><img width="140px" src="image.png" alt=""></h1>
     <nav>
       <a href="#">Home</a>
       <a href="#">History</a>
@@ -187,17 +270,20 @@
   </header>
   <div class="container">
     <h2>Reservation History</h2>
-    <div class="search-container">
-      <label>
-        Show 
-        <select>
-          <option>10</option>
-          <option>20</option>
-          <option>30</option>
-        </select> 
-        entries
-      </label>
-      <input type="search" placeholder="Search">
+     <div class="search-container">
+        <label>
+            Show
+            <select>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+            </select>
+            entries
+        </label>
+         <div class="search-input-container">
+            <label for="search-input" class="search-label">Search:</label>
+             <input type="search" id="search-input" placeholder="Search">
+          </div>
     </div>
     <div class="table-wrapper">
       <table>
@@ -222,7 +308,7 @@
             <td>Fitness & Performance Centre</td>
             <td>room 1</td>
             <td id="todayDate"></td>
-            <td>06:00 AM to 07:00 AM</td>
+            <td id="currentTimeSlot"></td>
             <td>Approved</td>
             <td>Approved</td>
             <td><a href="yes.html"><center><img src="eye.png" width="17px" alt=""></center></a></td>
@@ -352,18 +438,34 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-     
       const todayDateCell = document.getElementById('todayDate');
       const today = new Date();
 
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = today.toLocaleString('default', { month: 'short' });
-        const year = today.getFullYear();
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = today.toLocaleString('default', { month: 'short' });
+      const year = today.getFullYear();
 
-        const formattedDate = `${day}-${month}-${year}`;
-    
+      const formattedDate = `${day}-${month}-${year}`;
       todayDateCell.textContent = formattedDate;
 
+       // Get current hour
+        let currentHour = today.getHours();
+        let nextHour = (currentHour + 1) % 24;
+
+        // Convert to 12-hour format
+        let currentHour12 = currentHour % 12 || 12;
+        let nextHour12 = nextHour % 12 || 12;
+
+        // Determine AM/PM
+        let currentPeriod = currentHour < 12 || currentHour === 24 ? 'AM' : 'PM';
+        let nextPeriod = nextHour < 12 || nextHour === 24 ? 'AM' : 'PM';
+
+        // Format the time slots
+        let timeSlot = `${currentHour12}:00 ${currentPeriod} to ${nextHour12}:00 ${nextPeriod}`;
+
+
+       const currentTimeSlotCell = document.getElementById('currentTimeSlot');
+        currentTimeSlotCell.textContent = timeSlot;
     });
   </script>
 </body>
